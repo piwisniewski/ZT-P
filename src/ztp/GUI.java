@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class GUI extends JFrame implements ActionListener {
 
@@ -51,7 +52,7 @@ public class GUI extends JFrame implements ActionListener {
         btnFactoryAddRows.setPreferredSize(new Dimension(80, 20));
         btnFactoryAddRows.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                model.addRow(new Object[]{"4.4"});
+                model.addRow(new Object[]{"200"});
             }
         });
         pTableFactory.add(btnFactoryAddRows);
@@ -88,7 +89,9 @@ public class GUI extends JFrame implements ActionListener {
         btnSuplierAddRows.setPreferredSize(new Dimension(80, 20));
         btnSuplierAddRows.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                model.addRow(new Object[]{"Koszt", "..."});
+                model.addRow(new Object[]{"20", "350", "1540", "125", "150", "100", "200"});
+                model.addRow(new Object[]{"10", "300", "1550", "75", "125", "150", "175"});
+                model.addRow(new Object[]{"10", "350", "1570", "100", "75", "125", "50"});
             }
         });
         pTableSuplier.add(btnSuplierAddRows);
@@ -127,7 +130,23 @@ public class GUI extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if(((JButton)e.getSource()).equals(btnCalculate)){
-
+            ArrayList <MechanicalFactory> factories = new ArrayList<MechanicalFactory>();
+            for (int i = 0; i < tableFactory.getRowCount(); i++) {
+                factories.add(new MechanicalFactory(Integer.parseInt(tableFactory.getModel().getValueAt(i,0).toString())));
+            }
+            ArrayList <Foundry> foundries = new ArrayList<Foundry>();
+            int cost, Ai, Pi;
+            int []tab = new int[tableSuplier.getColumnCount()-3];
+            for (int i = 0; i < tableSuplier.getRowCount(); i++) {
+                cost = Integer.parseInt(tableSuplier.getModel().getValueAt(i,0).toString());
+                Ai = Integer.parseInt(tableSuplier.getModel().getValueAt(i,1).toString());
+                Pi = Integer.parseInt(tableSuplier.getModel().getValueAt(i,2).toString());
+                for (int k = 3; k < tableSuplier.getColumnCount(); k++) {
+                    tab[k-3] = Integer.parseInt(tableSuplier.getModel().getValueAt(i,k).toString());
+                }
+                foundries.add(new Foundry(Ai, Pi, cost, tab));
+            }
+            Ztp ztp = new Ztp(foundries, factories);
         }
     }
 }
