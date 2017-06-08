@@ -18,6 +18,15 @@ public class Ztp {
         printResults();
     }
 
+    public Ztp(ArrayList<Foundry> f, ArrayList<MechanicalFactory> m){
+        foundries = f;
+        factories = m;
+        sum = foundries.size() * (factories.size() + 1);
+        computeTotalCost();
+        prepareData();
+        printResults();
+    }
+
     private void init() {
         foundries = new ArrayList<>();
         factories = new ArrayList<>();
@@ -74,11 +83,9 @@ public class Ztp {
                 output.append("x").append(i).append(j);
                 output.append(" = ").append(results[counter++]).append("\n");
             }
+            output.append("\n");
         }
-    }
-
-    public static ArrayList<Foundry> getFoundries() {
-        return foundries;
+        GUI.getTxtOutput().setText(output.toString());
     }
 
     public static ArrayList<MechanicalFactory> getFactories() {
