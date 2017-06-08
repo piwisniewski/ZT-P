@@ -15,7 +15,7 @@ public class GUI extends JFrame implements ActionListener {
     private JButton btnFactoryAddRows, btnFactoryRemoveRows, btnSuplierRemoveRows, btnSuplierAddRows, btnCalculate;
     private JTextArea txtOutput;
 
-    public GUI(){
+    public GUI() {
         setSize(width, height);
         setTitle("ZTP");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -25,18 +25,18 @@ public class GUI extends JFrame implements ActionListener {
         addComponents();
     }
 
-    private void addComponents(){
+    private void addComponents() {
         addPanelTableFactory();
         addPanelTableSuplier();
         addPanelOutput();
     }
 
-    private void addPanelTableFactory(){
+    private void addPanelTableFactory() {
         pTableFactory = new JPanel();
-        pTableFactory.setBounds(10,10, 180, 120);
+        pTableFactory.setBounds(10, 10, 180, 120);
         add(pTableFactory);
-        String []columns = {"Zapotrzebowanie zakładów:"};
-        Object []r;
+        String[] columns = {"Zapotrzebowanie zakładów:"};
+        Object[] r;
         final DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(columns);
         tableFactory = new JTable();
@@ -47,7 +47,7 @@ public class GUI extends JFrame implements ActionListener {
         pTableFactory.add(scrollTableFactory);
         btnFactoryAddRows = new JButton("Dodaj wiersz");
         btnFactoryAddRows.setFont(new Font("Helvetica", Font.BOLD, 11));
-        btnFactoryAddRows.setMargin(new Insets(0,0,0,0));
+        btnFactoryAddRows.setMargin(new Insets(0, 0, 0, 0));
         btnFactoryAddRows.setPreferredSize(new Dimension(80, 20));
         btnFactoryAddRows.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -57,23 +57,23 @@ public class GUI extends JFrame implements ActionListener {
         pTableFactory.add(btnFactoryAddRows);
         btnFactoryRemoveRows = new JButton("Usuń wiersz");
         btnFactoryRemoveRows.setFont(new Font("Helvetica", Font.BOLD, 11));
-        btnFactoryRemoveRows.setMargin(new Insets(0,0,0,0));
+        btnFactoryRemoveRows.setMargin(new Insets(0, 0, 0, 0));
         btnFactoryRemoveRows.setPreferredSize(new Dimension(80, 20));
         btnFactoryRemoveRows.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int i = tableFactory.getRowCount()-1;
-                if(i>=0)
+                int i = tableFactory.getRowCount() - 1;
+                if (i >= 0)
                     model.removeRow(i);
             }
         });
         pTableFactory.add(btnFactoryRemoveRows);
     }
 
-    private void addPanelTableSuplier(){
+    private void addPanelTableSuplier() {
         pTableSuplier = new JPanel();
-        pTableSuplier.setBounds(pTableFactory.getX()+pTableFactory.getWidth()+10, pTableFactory.getY(), 280, 120);
+        pTableSuplier.setBounds(pTableFactory.getX() + pTableFactory.getWidth() + 10, pTableFactory.getY(), 280, 120);
         add(pTableSuplier);
-        String []columns = new String[suppliers];
+        String[] columns = new String[suppliers];
         final DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(columns);
         tableSuplier = new JTable();
@@ -84,9 +84,9 @@ public class GUI extends JFrame implements ActionListener {
         pTableSuplier.add(scrollTableSuplier);
         btnSuplierAddRows = new JButton("Dodaj wiersz");
         btnSuplierAddRows.setFont(new Font("Helvetica", Font.BOLD, 11));
-        btnSuplierAddRows.setMargin(new Insets(0,0,0,0));
+        btnSuplierAddRows.setMargin(new Insets(0, 0, 0, 0));
         btnSuplierAddRows.setPreferredSize(new Dimension(80, 20));
-        btnSuplierAddRows.addActionListener(new ActionListener(){
+        btnSuplierAddRows.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 model.addRow(new Object[]{"Koszt", "..."});
             }
@@ -94,26 +94,26 @@ public class GUI extends JFrame implements ActionListener {
         pTableSuplier.add(btnSuplierAddRows);
         btnSuplierRemoveRows = new JButton("Usuń wiersz");
         btnSuplierRemoveRows.setFont(new Font("Helvetica", Font.BOLD, 11));
-        btnSuplierRemoveRows.setMargin(new Insets(0,0,0,0));
+        btnSuplierRemoveRows.setMargin(new Insets(0, 0, 0, 0));
         btnSuplierRemoveRows.setPreferredSize(new Dimension(80, 20));
         btnSuplierRemoveRows.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int i = tableSuplier.getRowCount()-1;
-                if(i>=0)
+                int i = tableSuplier.getRowCount() - 1;
+                if (i >= 0)
                     model.removeRow(i);
             }
         });
         pTableSuplier.add(btnSuplierRemoveRows);
     }
 
-    private void addPanelOutput(){
+    private void addPanelOutput() {
         pOutput = new JPanel();
-        pOutput.setBounds(pTableFactory.getX(), pTableFactory.getY()+pTableFactory.getHeight()+10, width-30, 320);
+        pOutput.setBounds(pTableFactory.getX(), pTableFactory.getY() + pTableFactory.getHeight() + 10, width - 30, 320);
         add(pOutput);
         btnCalculate = new JButton("OBLICZ");
         getRootPane().setDefaultButton(btnCalculate);
         pOutput.add(btnCalculate);
-        txtOutput = new JTextArea(17,42);
+        txtOutput = new JTextArea(17, 42);
         txtOutput.setLineWrap(true);
         txtOutput.setEditable(false);
         scrollOutput = new JScrollPane(txtOutput);
@@ -125,8 +125,12 @@ public class GUI extends JFrame implements ActionListener {
         gui.setVisible(true);
     }
 
+    public JTextArea getTxtOutput() {
+        return txtOutput;
+    }
+
     public void actionPerformed(ActionEvent e) {
-        if(((JButton)e.getSource()).equals(btnCalculate)){
+        if (((JButton) e.getSource()).equals(btnCalculate)) {
 
         }
     }

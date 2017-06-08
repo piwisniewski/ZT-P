@@ -23,7 +23,6 @@ public class LinearOptimization {
         for (int i = 0; i <= Ztp.getSum()- Ztp.getFactories().size()+1; i+= Ztp.getFactories().size()+1) {
             temp = new double[Ztp.getSum()];
             Arrays.fill(temp, i, i+Ztp.getFactories().size()+1, 1);
-            //System.arraycopy(conditions, 0, temp, 0, Ztp.getFactories().size() + 1);
             constraints.add(new LinearConstraint(temp, Relationship.EQ, suppliers[counter++]));
         }
 
@@ -40,7 +39,6 @@ public class LinearOptimization {
         try {
             solution = new SimplexSolver().optimize(f, constraints, GoalType.MINIMIZE, true);
         } catch (OptimizationException e) {
-            System.out.println("LOL");
         }
         double[] results = new double[Ztp.getSum()];
         if (solution != null) {
