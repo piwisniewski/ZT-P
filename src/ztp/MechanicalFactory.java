@@ -13,15 +13,7 @@ public class MechanicalFactory {
         return demand;
     }
 
-    public void setDemand(int demand) {
-        this.demand = demand;
-    }
-
     public static int getTotalDemand() {
         return totalDemand;
-    }
-
-    public static void setTotalDemand(int totalDemand) {
-        MechanicalFactory.totalDemand = totalDemand;
     }
 }

@@ -15,6 +15,7 @@ public class Ztp {
         init();
         computeTotalCost();
         prepareData();
+        printResults();
     }
 
     private void init() {
@@ -27,7 +28,7 @@ public class Ztp {
         factories.add(new MechanicalFactory(200));
         factories.add(new MechanicalFactory(200));
         factories.add(new MechanicalFactory(200));
-        sum = foundries.size()*(factories.size()+1);
+        sum = foundries.size() * (factories.size() + 1);
     }
 
     private void computeTotalCost() {
@@ -63,6 +64,17 @@ public class Ztp {
             }
         }
         results = LinearOptimization.computeSolution(totalCost2, conditions, suppliers, receivers);
+    }
+
+    private void printResults() {
+        StringBuilder output = new StringBuilder("Wyniki:\n");
+        int counter = 0;
+        for (int i = 1; i <= foundries.size(); i++) {
+            for (int j = 1; j <= factories.size() + 1; j++) {
+                output.append("x").append(i).append(j);
+                output.append(" = ").append(results[counter++]).append("\n");
+            }
+        }
     }
 
     public static ArrayList<Foundry> getFoundries() {

@@ -19,39 +19,19 @@ public class Foundry {
         return productionCapability;
     }
 
-    public void setProductionCapability(int productionCapability) {
-        this.productionCapability = productionCapability;
-    }
-
     public int getProductionCost() {
         return productionCost;
-    }
-
-    public void setProductionCost(int productionCost) {
-        this.productionCost = productionCost;
     }
 
     public int getStorageCost() {
         return storageCost;
     }
 
-    public void setStorageCost(int storageCost) {
-        this.storageCost = storageCost;
-    }
-
     public int[] getShipmentCost() {
         return shipmentCost;
     }
 
-    public void setShipmentCost(int[] shipmentCost) {
-        this.shipmentCost = shipmentCost;
-    }
-
     public static int getTotalProductionCapabilities() {
         return totalProductionCapabilities;
-    }
-
-    public static void setTotalProductionCapabilities(int totalProductionCapabilities) {
-        Foundry.totalProductionCapabilities = totalProductionCapabilities;
     }
 }
